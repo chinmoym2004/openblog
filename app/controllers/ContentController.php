@@ -7,7 +7,7 @@ class ContentController extends BaseController {
 	//view content
 	public function getContent($id){
 		$blogcontent=Blog::where('id','=',$id)->get();
-		$data=array('blogcontent'=>$blogcontent);
+		$data=array('blogcontent'=>$blogcontent,'operation'=>'view');
 		/*foreach($blogcontent as $content)
 		{
 			$data[]
@@ -20,7 +20,7 @@ class ContentController extends BaseController {
 	//edit content
 	public function getEdit($id){
 		$blogcontent=Blog::where('id','=',$id)->get();
-		$data=array('blogcontent'=>$blogcontent);
+		$data=array('blogcontent'=>$blogcontent,'operation'=>'edit');
 		$this->layout->content = View::make('content',$data);
 	}
 }
