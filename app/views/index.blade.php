@@ -6,6 +6,6 @@
 		<div>{{$blogcontent->blog_body}}</div>
 		<div>{{$blogcontent->created_at}}</div>
 		<div>{{$blogcontent->tags}}</div>
-		<div>{{ HTML::link('blog/content/'.$blogcontent->id,'Read More') }}</div>
+		<div>{{ HTML::link('blog/display/'.$blogcontent->id,'Read More') }}</div>
 	@endforeach
 @endif

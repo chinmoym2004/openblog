@@ -16,6 +16,9 @@ Route::get('/','HomeController@index');
 Route::controller('users','UsersController');
 //Route::controller('admin','AdminController');
 Route::controller('blog','ContentController');
+
+Route::get('404','HomeController@notfound');
+
 Route::get('password/reset', array(
   'uses' => 'PasswordController@remind',
   'as' => 'password.remind'

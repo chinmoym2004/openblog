@@ -85,6 +85,11 @@
     <script src="{{ URL::asset('js/vendor/summernote.min.js')}}"></script>
     <script src="{{ URL::asset('js/vendor/ckeditor/ckeditor.js')}}"></script>
     <script src="{{ URL::asset('js/main.js')}}"></script>
+    <script type="text/javascript">
+    	var linkPath="{{URL::to('/')}}";
+    	var editor;
+		editor=CKEDITOR.replace('blog_body');
+    </script>
 
 </body>
 </html>

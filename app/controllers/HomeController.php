@@ -24,5 +24,8 @@ class HomeController extends BaseController {
 			);
 			$this->layout->content = View::make('index',$data);
 	}
+	public function notfound(){
+		$this->layout->content = View::make('404');
+	}
 
 }
