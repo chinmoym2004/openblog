@@ -1,7 +1,8 @@
+
 $(document).ready(function(){
 	//$('#blogPostFrom').hide();
-	
-	
+/*	$("#signupEmail").focusout(function(){
+*/	
 });
 
 /*$(document).on("click",".blog-edit",function(event){
@@ -24,7 +25,7 @@ $(document).on("click",".blog-new",function(event){
 	$('#blogPostFrom').attr("data-operation","new");
 	$('#blogPostFrom').show();
 });*/
-
+/*
 $(document).on("click","#frm-save",function(event){
 	//event.preventDefault();
 	//console.log($("#input_content_title").val());
@@ -35,14 +36,14 @@ $(document).on("click","#frm-save",function(event){
 	});
 	//$('#blogPostFrom').trigger('reset');
 	editor.destroy();
-});
+});*/
 
 $(document).on("click","#from-clr",function(){
 	$('#blogPostFrom')[0].reset();
 	$("#blog_body").text("");
 	editor.destroy();
-	$("#old_body").show();
 	$('#blogPostFrom').hide();
+	window.location.assign(linkOnCancle);
 });
 $(document).on("click","#from-view",function(){
 	$("#view_content_id").html($("#blogPostFrom").attr("data-id"));
@@ -62,3 +63,62 @@ $(document).on("click",".resetPreviewModel",function(){
 	$("#view_content_created_at").html("");
 	$("#view_content_updated_at").html("");
 });
+$("#sbuscrbeForm").submit(function(event){
+	event.preventDefault();
+	if($("#getSubscriberEmail").val()!='' && $("#getSubscriberEmail").val()!=null)
+	{
+		$.post(linkPath+'/users/subscribe',{'ubscribe_email':$("#getSubscriberEmail").val()},function(data){
+			$("#getSubscriberEmail").attr('value',"");
+			alertify.success("Thank you !");
+
+		});
+	}
+});
+
+$("#userCreate").submit(function(event){
+	if($("#firstname").val()=="" && $("#firstname").val()!==null)
+	{
+		alertify.error("Enter Your Firstname please");
+		event.preventDefault();
+	}
+	else if($("#lastname").val()=="" && $("#lastname").val()!==null)
+	{
+		alertify.error("Enter Your Lastname please");
+		event.preventDefault();
+	}
+	else if($("#signupEmail").val()=="" && $("#signupEmail").val()!==null)
+	{
+
+		alertify.error("Enter Your Email please");
+		event.preventDefault();
+	}
+	else if($("#signupPassword").val()=="" && $("#signupPassword").val()!==null)
+	{
+		alertify.error("Enter a password please");
+		event.preventDefault();
+	}
+	else
+	{
+		/*event.preventDefault();
+		$.ajax({
+		    url : linkPath+'/users/checkforemail',
+		    type: "POST",
+		    data : formData,
+		    success: function(data, textStatus, jqXHR)
+		    {
+		        //data - response from server
+		    },
+		    error: function (jqXHR, textStatus, errorThrown)
+		    {
+		 
+		    }
+		});
+		/*$.post(linkPath+'/users/checkforemail',{'email':$("#signupEmail").val()},function(data){
+		}).success(data);*/
+		//alertify.error("error");
+		//event.preventDefault();
+	}		
+});
+/*$("#signupEmail").keypress(function(){
+	$("#doSignup").attr("disabled","false");
+});*/

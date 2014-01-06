@@ -2,14 +2,14 @@
 	@if(count($blogcontent)!=0)
 		@foreach($blogcontent as $content)
 			@if(Auth::check() && ($content->uid==Auth::user()->id))
-					<form role="form" id="blogPostFrom" name="blogPostFrom" data-id="{{$content->id}}" data-operation="{{$operation}}" method="post" action="javascript:void(0);">
+					<form role="form" id="blogPostFrom" name="blogPostFrom" data-id="{{$content->id}}" data-operation="{{$operation}}" method="post" action="{{url('blog/update')}}/{{$content->id}}">
 					  <div class="form-group">
 						<label for="exampleInputEmail1">Post Title</label>
-						<input type="text" class="form-control" id="blog_title" name="blog_title" placeholder="Enter a title here" value="{{$content->title}}">
+						<input type="text" class="form-control" id="blog_title" name="title" placeholder="Enter a title here" value="{{$content->title}}">
 					  </div>
 					  <div class="form-group">
 						<label for="exampleInputEmail1">Post Body</label>
-						<textarea type="textarea" id="blog_body" name="blog_body" class="form-control" rows="10" cols="80" placeholder="Enter the post contet here">{{$content->blog_body}}</textarea>
+						<textarea type="textarea" id="blog_body" name="body" class="form-control" rows="10" cols="80" placeholder="Enter the post contet here">{{$content->blog_body}}</textarea>
 					  </div>
 					  <div class="form-group">
 						<label for="exampleInputEmail1">Post Tags</label>

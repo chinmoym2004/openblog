@@ -18,7 +18,12 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		$blog=Blog::get();
+		$blog=DB::table('blog')
+                            ->join('users', 'blog.uid', '=', 'users.id')
+                            ->select('*')
+                            ->orderBy('blog.updated_at', 'desc')
+                            ->paginate(10);
+
 		$data=array(
 				'blog'=>$blog
 			);

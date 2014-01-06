@@ -15,25 +15,40 @@ class UsersController extends BaseController {
 	
 	public function postCreate() {
 	
-	$validator = Validator::make(Input::all(), User::$rules);
+	//$validator = Validator::make(Input::all(), User::$rules);
  
-	   if ($validator->passes()) 
-	   {
-		   $user = new User;
-		   $user->firstname = Input::get('firstname');
-		   $user->lastname = Input::get('lastname');
-		   $user->email = Input::get('email');
-		   $user->password = Hash::make(Input::get('password'));//Input::get('password');
-		   //$user->useras = 1;
-		   $user->save();
-		   return Redirect::to('users/login')->with('message', 'Thanks for registering! Login to continue');
-	   } 
-	   else 
-	   {
-		  return Redirect::to('users/register')->with('message', '<strong>Oh no!</strong>Change a few things up and try submitting again')->withErrors($validator)->withInput();
-	   }
+	//   if ($validator->passes()) 
+	//   {
+		   $useremail=User::where('email','=',Input::get('email'))->get();
+			if(count($useremail)>0)
+					return Redirect::to('users/login')->with('message', 'Email Id already take ! recover your password to use it');
+			else
+				{
+				   $user = new User;
+				   $user->firstname = Input::get('firstname');
+				   $user->lastname = Input::get('lastname');
+				   $user->email = Input::get('email');
+				   $user->password = Hash::make(Input::get('password'));//Input::get('password');
+				   //$user->useras = 1;
+				   $user->save();
+				   return Redirect::to('users/login')->with('message', 'Thanks for registering! Login to share your content to the world');
+		 		}
+		   //} 
+	 //  else 
+	 //  {
+	//	  return Redirect::to('users/register')->with('message', '<strong>Oh no!</strong>Change a few things up and try submitting again')->withErrors($validator)->withInput();
+	//   }
        
 	}
+	public function postCheckforemail(){
+		$newemail=$_POST['email'];
+		$useremail=User::where('email','=',$newemail)->get();
+		if(count($useremail)>0)
+				return "error";
+		else
+			return "success";
+	}
+
 	public function getLogin() {
 	   $this->layout->content = View::make('users.login');
 	}
@@ -204,5 +219,14 @@ class UsersController extends BaseController {
 	public function getSetting(){
 		$data=array('alluser' => DB::table('users')->orderBy('created_at', 'desc')->paginate(50));		
 		$this->layout->content = View::make('users.setting',$data);
+	}
+
+	public function postSubscribe(){
+		$subs=new Subs();
+		$subs->sub_email=$_POST['ubscribe_email'];
+		$subs->active=1;
+		$subs->created_at=date('yy-m-d');
+		$subs->save();
+		return "success";
 	}
 }

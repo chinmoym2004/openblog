@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jan 03, 2014 at 02:30 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Host: 127.0.0.1
+-- Generation Time: Jan 05, 2014 at 10:50 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -15,10 +15,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
---
--- Database: `openblog`
---
 
 -- --------------------------------------------------------
 
@@ -42,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `blog` (
 --
 
 INSERT INTO `blog` (`id`, `uid`, `title`, `blog_body`, `tags`, `created_at`, `updated_at`) VALUES
-(1, 1, 'title', '<h1>body</h1>\n', 'SAMPLE', '2013-12-24 14:00:00', '2014-01-03 07:55:23'),
-(2, 1, 'My blog test content 1', '<h1>H1&nbsp; : The <em>quick brown fox jumps</em> over the <em>lazy</em> dog</h1>\n\n<p>&nbsp;</p>\n\n<h2>The <em>quick brown fox jumps</em> over the <em>lazy</em> dog</h2>\n\n<pre>\n<a href="http://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog">The <em>quick brown fox jumps</em> over the <em>lazy</em> dog </a></pre>\n\n<p>&nbsp;</p>\n\n<h2>The <em>quick brown fox jumps</em> over the <em>lazy</em> dog</h2>\n', 'blog,content', '2013-12-24 14:00:00', '2014-01-03 07:57:09');
+(1, 1, 'title of my blog', '<h1>body of my blog content</h1>\r\n', 'SAMPLE,basic', '2013-12-24 14:00:00', '2014-01-04 04:22:09'),
+(2, 1, 'My blog test content 1', '<h1><span style="font-size:13px; line-height:1.2em">The </span><em style="font-size:13px; line-height:1.2em">quick brown fox jumps</em><span style="font-size:13px; line-height:1.2em"> over the </span><em style="font-size:13px; line-height:1.2em">lazy</em><span style="font-size:13px; line-height:1.2em"> dog</span></h1>\n\n<pre>\n<a href="http://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog">The <em>quick brown fox jumps</em> over the <em>lazy</em> dog </a></pre>\n\n<p>&nbsp;</p>\n\n<h2>The <em>quick brown fox jumps</em> over the <em>lazy</em> dog</h2>\n', 'blog,content', '2013-12-24 14:00:00', '2014-01-04 04:17:42');
 
 -- --------------------------------------------------------
 
@@ -70,6 +66,29 @@ INSERT INTO `password_reminders` (`email`, `token`, `created_at`) VALUES
 ('chinmoym2004@gmail.com', '8e82708ce6eced47af88c34dde7724aa5bdb0796', '2013-12-26 05:47:39'),
 ('chinmoym2004@gmail.com', '94621090c33e6638cd26ffbbd92286d4c43b1474', '2013-12-26 05:48:19'),
 ('chinmoym2004@gmail.com', 'a3f7df91d3da99c08868c733be26ddd2c12eb906', '2013-12-26 07:09:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriber`
+--
+
+CREATE TABLE IF NOT EXISTS `subscriber` (
+  `id` int(11) NOT NULL,
+  `sub_email` varchar(50) NOT NULL,
+  `active` int(11) NOT NULL,
+  `created_at` varchar(20) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subscriber`
+--
+
+INSERT INTO `subscriber` (`id`, `sub_email`, `active`, `created_at`, `updated_at`) VALUES
+(0, 'chinmoym2004@gmi.com', 1, '1414-01-04 00:00:00', '2014-01-04 12:56:11'),
+(0, 'chinmoym2004@gmail.com', 1, '1414-01-04 00:00:00', '2014-01-04 12:56:41'),
+(0, 'chinmoym2004@gmail.com', 1, '1414-01-04 00:00:00', '2014-01-04 13:00:32');
 
 -- --------------------------------------------------------
 

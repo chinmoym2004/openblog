@@ -1,3 +1,4 @@
+
 <?php
 class ContentController extends BaseController {
 	
@@ -16,6 +17,12 @@ class ContentController extends BaseController {
 			return Redirect::to('404');
 		}
 				
+	}
+	public function getAllcontent(){
+		$uid=Auth::user()->id;
+		$blogcontent=Blog::where('uid','=',$uid)->get();
+		$data=array('blogcontent'=>$blogcontent,'operation'=>'view');
+		$this->layout->content = View::make('uersconetent',$data);
 	}
 	
 

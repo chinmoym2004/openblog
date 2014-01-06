@@ -1,0 +1,89 @@
+
+body{
+background:url('../img/headbg.png') repeat;
+padding:0px;
+margin:0px;
+//height:34px;
+}
+.navbar {
+border-radius: 0px;
+}
+.navbar-default {
+border: none;
+background-color: #A7CE42;
+}
+.navbar-default .nav .active a, .navbar-default .nav .active a:hover, .navbar-default .nav .active a:focus {
+color: #fff;
+background-color: #4D5045;
+}
+.social img{
+height:40px;
+width:40px;
+}
+.social a{
+	padding:0px 13px 0px 5px;
+}
+#getSubscriber{
+	cursor:pointer;
+}
+fieldset {
+//display: block;
+//border: 1px #1552A0 solid;
+/*border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+//min-width: -webkit-min-content;
+*/}
+legend {
+/*display: block;
+width: 22%;
+padding: 0;
+margin-bottom: 0px;
+font-size: 16px;
+line-height: inherit;
+color: #B15C3B;
+border: 0;
+border-bottom: 0px solid #e5e5e5;*/
+}
+.progress {
+margin-bottom: 0px;
+}
+.progress-info .progress-bar, .progress .progress-bar-info, .progress-info.progress-striped .progress-bar, .progress-striped .progress-bar-info {
+background-color: #131818;
+}
+.heading h1,h2,h3,h4{
+ padding:0px;
+ margin:0px;
+ color: #7F8083;
+}
+.well {
+min-height: 20px;
+padding: 7px;
+margin-bottom: 17px;
+background-color: #5C5A54;
+border: 1px solid #FCFCFC;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+article{
+	border: #CEBABA dashed 1px;
+	border-radius: 4px;
+	padding:10px;
+	margin: 15px; 
+}
+.opertion{ 
+display: none;
+}
+.myarticle:hover .opertion{
+display : block;
+}
+.login{
+border: 1px solid #D8C3C3;
+margin: 0px;
+padding: 5px;
+border-radius: 4px;
+}
+}
