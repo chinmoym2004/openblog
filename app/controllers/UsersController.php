@@ -229,4 +229,19 @@ class UsersController extends BaseController {
 		$subs->save();
 		return "success";
 	}
+
+	public function postComments(){
+		if(Auth::check()){
+			$uid=Auth::user()->id;
+			$comment=new Comment();
+			$comment->commentby=$uid;
+			$comment->commentbody=$_POST['postbody'];
+			$comment->forwhichpost=$_POST['forPostId'];
+			$comment->created_at=date('Y-m-d H:m:s');
+			$comment->save();
+		}
+		else{
+			$this->layout->content = View::make('users.login');
+		}
+	}
 }

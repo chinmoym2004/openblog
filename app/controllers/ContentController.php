@@ -8,9 +8,21 @@ class ContentController extends BaseController {
 	//view content
 	public function getDisplay($id){
 		$blogcontent=Blog::where('id','=',$id)->get();
+
+		$comments=DB::table('comment')
+					->join('blog','blog.id','=','comment.forwhichpost')
+					->join('users','users.id','=','comment.commentby')
+					->get();
+
 		if(count($blogcontent)>0){
-			$data=array('blogcontent'=>$blogcontent,'operation'=>'view');
+
+			$data=array(
+				'blogcontent'=>$blogcontent,
+				'operation'=>'view',
+				'comments'=>$comments
+				);
 			$this->layout->content = View::make('content',$data);
+		
 		}
 		else
 		{
