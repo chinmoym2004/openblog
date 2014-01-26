@@ -17,24 +17,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css')}}" media="screen">
+		<link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css')}}" media="screen">
+		<link href="{{ URL::asset('css/bootflat.css')}}" rel="stylesheet" media="screen">
+		<link href="{{ URL::asset('css/bootflat-extensions.css')}}" rel="stylesheet" media="screen">
+		<link href="{{ URL::asset('css/bootflat-square.css')}}" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="{{ URL::asset('css/alertify.css')}}">
 		<link rel="stylesheet" href="{{ URL::asset('css/alertify.default.css')}}">
 		<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.css')}}">
-		<link rel="stylesheet" href="{{ URL::asset('js/select2/select2.css')}}" type="text/css" />
-		<link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css')}}" media="screen">
-		<link rel="stylesheet" href="{{ URL::asset('css/animate.css')}}" type="text/css" />
-		<link rel="stylesheet" href="{{ URL::asset('css/font.css')}}" type="text/css" cache="false" />
-		<link rel="stylesheet" href="{{ URL::asset('css/plugin.css')}}" type="text/css" />
-		<link rel="stylesheet" href="{{ URL::asset('css/app.css')}}" type="text/css" />
 		<link rel="stylesheet" href="{{ URL::asset('css/main.css')}}">
 		
-		 <!--[if lt IE 9]>
-		    <script src="{{ URL::asset('js/ie/respond.min.js')}}" cache="false"></script>
-		    <script src="{{ URL::asset('js/ie/html5.js')}}" cache="false"></script>
-		    <script src="{{ URL::asset('js/ie/excanvas.js')}}" cache="false"></script>
-		    <script src="{{ URL::asset('js/ie/fix.js')}}" cache="false"></script>
+		
+		
+		
+
+		  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		  <!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<script src="js/respond.min.js"></script>
 		  <![endif]-->
 
+		
+		<!-- To be uncommented in Prduction 
+		    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+		    -->
+		<!-- To be commented in Prduction -->
 		<script src="{{ URL::asset('js/vendor/jquery-1.10.1.min.js')}}"></script>
 		
 		<script src="{{ URL::asset('js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
@@ -55,6 +62,8 @@
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-right">
+		  <li><a href="{{url('/')}}">Home</a></li>
+		  
 		  @if(Auth::check())
 		  <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{Auth::user()->firstname}}<b class="caret"></b></a>
@@ -96,6 +105,8 @@
 	</div>
 	
 	<div class="col-md-3">
+	<!-- 	<fieldset>
+			<legend>Connect</legend> -->
 				<div class="social" align="center">
 					<a href="{{url('/')}}"><img src="{{URL::asset('img/facebook.png')}}"/></a>
 					<a href="{{url('/')}}"><img src="{{URL::asset('img/g+.png')}}"/></a>
@@ -110,39 +121,17 @@
 						    <span class="input-group-btn">
 						       <button class="btn btn-default" type="submit" id="getSubscriber">Subscribe</button>
 						    </span>
-						</div>
+						</div><!-- /input-group -->
 					</form>
-				</div>
-				<br/>
-				<h5 class="font-semibold">Categories</h5>
-				<div class="line line-dashed"></div>
-				<div class="list-group bg-white">
-					<?php
-					$categories=DB::table('blog')
-							->select('*',DB::raw('count(id) as count_no'))
-                            ->groupby('categories')
-                            ->where('varified','=',1)
-                            ->get();
-                    
-                    ?>
-                    @foreach($categories as $cate)
-		                <a href="{{url('blog/bycat?type='.$cate->categories)}}" class="list-group-item byCat" data-cat="{{$cate->categories}}">
-		                  <i class="fa fa-chevron-right"></i>
-		                  <span class="badge">{{$cate->count_no}}</span>
-		                  {{$cate->categories}}
-		                </a>
-	                @endforeach                
-              	</div>
-              	<h5 class="font-semibold">Tags</h5>
-				<div class="line line-dashed"></div>
-				<div class="tags m-b-lg">
-	                <a href="#" class="label bg-success">bootstrap</a> 
-	                <a href="#" class="label bg-success">Application</a> 
-	                <a href="#" class="label bg-success">Apple</a> 
-	                <a href="#" class="label bg-success">Less</a> 
-	                <a href="#" class="label bg-success">Theme</a> 
-	                <a href="#" class="label bg-success">Wordpress</a>
-	            </div>	
+				</div>	
+<!-- 		</fieldset>
+ -->		<br/>
+		<!-- <div class="progress progress-striped" style="height:30px;text-align:center">
+		  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 100%" align="left">
+			Categories
+		  </div>
+		</div> -->
+		
 	</div>
 </div>
 
@@ -250,19 +239,15 @@
 
 
 <!-- External Scripts -->    
-
+    <script src="{{ URL::asset('js/vendor/html5shiv-printshiv.js')}}"></script>
+    <script src="{{ URL::asset('js/vendor/html5shiv.js')}}"></script>
     <script src="{{ URL::asset('js/vendor/bootstrap.min.js')}}"></script>
     <script src="{{ URL::asset('js/vendor/jquery-ui.js')}}"></script>
+    <script src="{{ URL::asset('js/vendor/jquery.windows.js')}}"></script>
+    <script src="{{ URL::asset('js/vendor/jquery.nicescroll.js')}}"></script>
+    <script src="{{ URL::asset('js/vendor/summernote.min.js')}}"></script>
     <script src="{{ URL::asset('js/vendor/ckeditor/ckeditor.js')}}"></script>
     <script src="{{ URL::asset('js/vendor/alertify.js')}}"></script>
-    <!-- App -->
-    <script src="{{ URL::asset('js/select2/select2.min.js')}}"></script>
-	<script src="{{ URL::asset('js/app.js')}}"></script>
-	<script src="{{ URL::asset('js/app.plugin.js')}}"></script>
-	<script src="{{ URL::asset('js/app.data.js')}}"></script>
-	<script src="{{ URL::asset('js/slimscroll/jquery.slimscroll.min.js')}}" cache="false"></script>
-	<script src="{{ URL::asset('js/libs/moment.min.js')}}"></script>
-
     <script src="{{ URL::asset('js/main.js')}}"></script>
     <script type="text/javascript">
     	var linkPath="{{URL::to('/')}}";

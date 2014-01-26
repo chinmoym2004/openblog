@@ -19,15 +19,16 @@ class HomeController extends BaseController {
 	public function index()
 	{
 		$blog=DB::table('blog')
-                            ->join('users', 'blog.uid', '=', 'users.id')
-                            ->select('*')
-                            ->orderBy('blog.updated_at', 'desc')
-                            ->paginate(10);
+                ->join('users', 'blog.uid', '=', 'users.id')
+                ->where('blog.varified','=',1)
+                ->select('*',DB::raw('blog.id as bid'))
+                ->orderBy('blog.updated_at', 'desc')
+                ->paginate(10);
 
 		$data=array(
 				'blog'=>$blog
-			);
-			$this->layout->content = View::make('index',$data);
+		);
+		$this->layout->content = View::make('index',$data);
 	}
 	public function notfound(){
 		$this->layout->content = View::make('404');

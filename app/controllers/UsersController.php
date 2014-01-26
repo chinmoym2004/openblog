@@ -237,11 +237,21 @@ class UsersController extends BaseController {
 			$comment->commentby=$uid;
 			$comment->commentbody=$_POST['postbody'];
 			$comment->forwhichpost=$_POST['forPostId'];
+			$comment->varified=0;
 			$comment->created_at=date('Y-m-d H:m:s');
 			$comment->save();
 		}
 		else{
 			$this->layout->content = View::make('users.login');
 		}
+		return "";
+	}
+
+	public function postLike(){
+			$postlike=Blog::find($_REQUEST['id']);
+			$postlike->no_likes=$postlike->no_likes+1;
+			$data=$postlike->no_likes;
+			$postlike->save();
+			return $data;
 	}
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2014 at 10:50 AM
+-- Generation Time: Jan 26, 2014 at 04:57 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -15,6 +15,12 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `openblog`
+--
+CREATE DATABASE IF NOT EXISTS `openblog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `openblog`;
 
 -- --------------------------------------------------------
 
@@ -28,18 +34,38 @@ CREATE TABLE IF NOT EXISTS `blog` (
   `title` varchar(225) NOT NULL,
   `blog_body` text NOT NULL,
   `tags` text NOT NULL,
+  `arrival` varchar(10) NOT NULL,
+  `varified` int(11) NOT NULL,
+  `no_likes` int(11) NOT NULL,
+  `categories` varchar(50) NOT NULL,
   `created_at` varchar(20) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `blog`
 --
 
-INSERT INTO `blog` (`id`, `uid`, `title`, `blog_body`, `tags`, `created_at`, `updated_at`) VALUES
-(1, 1, 'title of my blog', '<h1>body of my blog content</h1>\r\n', 'SAMPLE,basic', '2013-12-24 14:00:00', '2014-01-04 04:22:09'),
-(2, 1, 'My blog test content 1', '<h1><span style="font-size:13px; line-height:1.2em">The </span><em style="font-size:13px; line-height:1.2em">quick brown fox jumps</em><span style="font-size:13px; line-height:1.2em"> over the </span><em style="font-size:13px; line-height:1.2em">lazy</em><span style="font-size:13px; line-height:1.2em"> dog</span></h1>\n\n<pre>\n<a href="http://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog">The <em>quick brown fox jumps</em> over the <em>lazy</em> dog </a></pre>\n\n<p>&nbsp;</p>\n\n<h2>The <em>quick brown fox jumps</em> over the <em>lazy</em> dog</h2>\n', 'blog,content', '2013-12-24 14:00:00', '2014-01-04 04:17:42');
+INSERT INTO `blog` (`id`, `uid`, `title`, `blog_body`, `tags`, `arrival`, `varified`, `no_likes`, `categories`, `created_at`, `updated_at`) VALUES
+(6, 3, 'title of my blog', '<p>This &nbsp;is a body text to test my blog content</p>\n', 'test', 'new', 1, 1, 'Testing Content', '2014-01-26 15:12:12', '2014-01-26 09:46:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `commentby` int(11) NOT NULL,
+  `commentbody` text NOT NULL,
+  `forwhichpost` int(11) NOT NULL,
+  `varified` int(11) NOT NULL,
+  `created_at` varchar(20) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -102,21 +128,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `admin` int(11) NOT NULL,
+  `admin` int(11) NOT NULL COMMENT '1-super admin,2 admin  3 editor , else user',
   `active` int(11) NOT NULL,
   `created_at` varchar(20) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `admin`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'chinmoy', 'maity', 'chinmoym2004@gmail.com', '$2y$08$rsYTbMntTv8PpWMhWzW95uDXs39IZddmOUxojslwBzx2OP.6dn8me', 0, 0, '2013-12-26 11:10:00', '2013-12-26 05:40:00'),
-(2, 'admin', 'admin', 'chinmoym2004@rediffmail.com', '$2y$08$SuuCkCeCSzqyDimwewXkzOac8x3DhpZwXow1xb6FBO1zM7CcuuzGe', 1, 0, '2013-12-27 08:58:51', '2013-12-27 08:59:09');
+(2, 'admin', 'admin', 'chinmoym2004@rediffmail.com', '$2y$08$SuuCkCeCSzqyDimwewXkzOac8x3DhpZwXow1xb6FBO1zM7CcuuzGe', 1, 0, '2013-12-27 08:58:51', '2013-12-27 08:59:09'),
+(3, 'Chinmoy', 'Maity', 'chinmoym2004@gmail.com', '$2y$10$xak9tuRsH1ymYUwzfc6ylOAQqkh3pXRUrqAa6.ZVk7dzIPz0to8lm', 0, 0, '2014-01-26 15:10:02', '2014-01-26 09:40:02');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
